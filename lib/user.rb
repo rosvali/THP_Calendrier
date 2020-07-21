@@ -9,11 +9,16 @@ class User
 		@age = age
 		@@users << self
 	end
+
 	def self.all
 		@@users
 	end
+
 	def self.find_by_email(adresse)
-		@@users.each {|user| return user if user.email == adresse}
-		puts "L'email correspond à aucun utilisateur"
+  find = @@users.select { |user| user.email == adresse }.first
+  return find unless find.nil?
+    
+  puts "L'email correspond à aucun utilisateur" 
 	end
+
 end
